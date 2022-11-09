@@ -1,0 +1,81 @@
+* {
+  /* transform-style: preserve-3d; */
+}
+
+
+
+
+.goToHome{
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 4rem;
+  border-radius: 4rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.05rem;
+  background-color: #b3b3b3;
+  color: var(--button-color);
+}
+
+
+ .info{
+  color: var(--color);
+  margin-bottom: 2rem;
+}
+
+
+@property --swing-x {
+  initial-value: 0;
+  inherits: false;
+  syntax: '<integer>';
+}
+@property --swing-y {
+  initial-value: 0;
+  inherits: false;
+  syntax: '<integer>';
+}
+
+p {
+  font-weight: 100;
+}
+h1 {
+  font-size: clamp(5rem, 30vmin, 10rem);
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  margin-bottom: 1rem;
+  letter-spacing: 1rem;
+  --x: calc(50% + (var(--swing-x) * 0.5) * 1%);
+  background: radial-gradient(#e6e6e6, #7a7a7a 45%) var(--x) 100%/200% 200%;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.cloak {
+  animation: swing var(--speed) infinite alternate-reverse ease-in-out;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(50% 30% at 50% 43%, transparent, #000 65%);
+}
+.cloak__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+
+.cloak__container {
+  height: 250vmax;
+  width: 250vmax;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.info > p,h2 {
+  margin-bottom: 2rem;
+  color: #fafafa;
+  transform-style: preserve-3d;
+
+} 

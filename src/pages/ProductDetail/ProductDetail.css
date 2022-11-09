@@ -1,0 +1,158 @@
+.preview {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 996px) {
+  .preview {
+    margin-bottom: 20px;
+  }
+}
+
+
+.preview-thumbnail.nav-tabs {
+  border: none;
+  margin-top: 15px;
+}
+
+.preview-thumbnail.nav-tabs li {
+  width: 18%;
+  margin-right: 2.5%;
+}
+
+.preview-thumbnail.nav-tabs li img {
+  max-width: 100%;
+  display: block;
+}
+
+
+.preview-thumbnail.nav-tabs li:last-of-type {
+  margin-right: 0;
+}
+
+.tab-content {
+  overflow: hidden;
+}
+
+.tab-content img {
+  width: 100%;
+}
+
+.tab-pane img{
+  max-height: 20rem;
+  object-fit: cover;
+}
+
+.card {
+  margin-top: 50px;
+  background: #eee;
+  padding: 1.2em;
+  line-height: 1.5em;
+  font-family: 'open sans';
+  overflow-x: hidden;
+  text-align:start;
+}
+
+@media screen and (min-width: 997px) {
+  .wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.colors {
+  flex-grow: 1;
+}
+
+.product-title,
+.price,
+.sizes,
+.colors {
+  text-transform: UPPERCASE;
+  font-weight: bold;
+}
+
+.checked,
+.price span {
+  color: #ff9f1a;
+}
+
+.product-title,
+.rating,
+.product-description,
+.price,
+.vote,
+.sizes,
+.colors {
+  margin-bottom: 15px;
+  font-size: medium;
+
+}
+
+
+
+.sizes {
+  margin-right: 10px;
+}
+
+
+.color {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  height: 2em;
+  width: 2em;
+  border-radius: 2px;
+}
+
+.color:first-of-type {
+  margin-left: 20px;
+}
+
+
+.like {
+  background: #ff9f1a;
+  padding: 0.4em 1.2em;
+  border: none;
+  text-transform: UPPERCASE;
+  font-weight: bold;
+  color: #fff;
+}
+
+
+.add-to-cart{
+  text-transform: UPPERCASE;
+  font-weight: bold;
+  color:black;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.like:hover {
+  background: #b36800;
+  color: #fff;
+}
+
+
+
+
+.orange {
+  background: #ff9f1a;
+}
+
+.green {
+  background: #85ad00;
+}
+
+.blue {
+  background: #0076ad;
+}

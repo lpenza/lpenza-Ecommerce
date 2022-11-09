@@ -1,0 +1,14 @@
+.Carousel{
+  max-height: 12rem;
+}
+
+.item{
+  background-color: blue;
+  object-fit: cover;
+}
+
+.img{
+  height: 12rem;
+  width: 100vw;
+
+}
