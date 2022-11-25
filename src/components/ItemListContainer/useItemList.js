@@ -10,7 +10,6 @@ useEffect(()=>{
   .then(data=>{
     setproductsAvailable(data)
     setIsLoading(false)
-    console.log(data)
   })
     
 },[])

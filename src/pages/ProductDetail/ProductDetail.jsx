@@ -1,15 +1,30 @@
+import React,{useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import CartWidget from '../../components/CartWidget/CartWidget';
 import Spinner from '../../components/Spinner/Spinner';
 import './ProductDetail.css';
 import { NotFound } from '../NotFound/NotFound';
 import { useProducts } from "../../hooks/useProducts";
-import { Counter } from '../../components/Counter/Counter';
+import  Counter  from '../../components/Counter/Counter';
+import { useCartContext } from "../../context/cartContext";
+import { getProduct } from '../../api/products';
 
 export const ProductDetail = () => {
+  const { addProduct } = useCartContext();
   const { productId } = useParams();
   const {item,isLoading,error}=useProducts(2,productId)
-  console.log(isLoading);
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    getProduct(productId).then((data) => {
+      setProduct(data);
+    });
+  }, [productId]);
+  
+  const handleAdd = (qty) => {
+    addProduct(product, qty);
+  };
+  
   return (
     <>
       {item.length===0 && error ? (
@@ -26,47 +41,45 @@ export const ProductDetail = () => {
                     <div className="preview col-md-6">
                       <div className="preview-pic tab-content">
                         <div className="tab-pane active" id="pic-1">
-                          <img src={item.image} alt={item.title} />
+                          <img src={item.imagen} alt={item.nombre} />
                         </div>
                       </div>
                       <ul className="preview-thumbnail nav nav-tabs">
                         <li className="active">
-                          <img src={item.image} alt={item.title} />
+                          <img src={item.imagen} alt={item.title} />
                         </li>
                         <li>
-                          <img src={item.image} alt={item.title} />
+                          <img src={item.imagen} alt={item.title} />
                         </li>
                         <li>
-                          <img src={item.image} alt={item.title} />
+                          <img src={item.imagen} alt={item.title} />
                         </li>
                         <li>
-                          <img src={item.image} alt={item.title} />
+                          <img src={item.imagen} alt={item.title} />
                         </li>
                         <li>
-                          <img src={item.image} alt={item.title} />
+                          <img src={item.imagen} alt={item.title} />
                         </li>
                       </ul>
                     </div>
                     <div className="details col-md-6">
-                      <h3 className="product-title">{item.title}</h3>
+                      <h3 className="product-title">{item.nombre}</h3>
                       <p className="product-description">
-                        {item.description}
+                        {item.categoria}
                       </p>
                       <h4 className="price">
-                        current price: <span>${item.price}</span>
+                        current price: <span>${item.precio}</span>
                       </h4>
                       <h5 className="sizes">
                         Category:
-                        {item.category}
+                        {item.categoria}
                       </h5>
                       <h5 className="colors">
-                        colors:
-                        <span className="color orange"></span>
-                        <span className="color green"></span>
-                        <span className="color blue"></span>
+                        Description:
+                        {item.descripcion}
                       </h5>
                       <div className="action add-to-cart">
-                        <Counter stock={item.id} />
+                        <Counter stock={item?.stock} onAdd={handleAdd} />
                         <button className="like btn btn-default" type="button">
                           <CartWidget />
                         </button>

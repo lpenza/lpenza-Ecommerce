@@ -1,7 +1,6 @@
 import NavBar from '../NavBar';
 import { Footer } from '../Footer/Footer';
 import { Outlet } from 'react-router-dom';
-import { useProducts } from '../../hooks/useProducts';
 import { useLayout } from './useLayout';
 
 // const links = ["Men", "Women", "Kids"];

@@ -9,7 +9,7 @@ const ItemListContainer = ({products, isLoading}) => {
       {isLoading ? <Spinner /> : null}
       <div className="list">
         {products.map((oneProduct,index)=>(
-        <ItemList oneProduct={oneProduct} />
+        <ItemList oneProduct={oneProduct} key={index} />
         ))}
       </div>
     </>

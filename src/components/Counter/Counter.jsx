@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import  Button  from '../Button/Button';
+import { useState } from "react";
+import { Button } from "react-bootstrap";
 
-export const Counter = ({ stock }) => {
+const Counter = ({ stock, onAdd }) => {
   const [contador, setContador] = useState(0);
 
   const handleAdd = () => {
@@ -13,14 +13,22 @@ export const Counter = ({ stock }) => {
   const handleSubstract = () => {
     if (contador > 0) setContador(contador - 1);
   };
-
+  
   return (
-    <>
-      <div className="grid">
-        <Button onClick={() => handleAdd()}> + </Button>
-        <span style={{ minWidth: 25 }}>{contador}</span>
-        <Button onClick={() => handleSubstract()}> - </Button>
-      </div>
-    </>
+    <div className="grid">
+      <Button onClick={handleAdd}> Sumar </Button>
+      <span style={{ minWidth: 25 }}>{contador}</span>
+      <Button onClick={handleSubstract}> Restar </Button>
+      <Button
+        onClick={() => {
+          if (contador) onAdd(contador);
+        }}
+        disabled={!contador}
+      >
+        Agregar al carrito
+      </Button>
+    </div>
   );
 };
+
+export default Counter;

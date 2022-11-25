@@ -1,11 +1,27 @@
+import React,{useState} from 'react';
 import NavbarBrand from './NavBarBrand/NavBarBrand';
 import CartWidget from './CartWidget/CartWidget';
-import {NavDropdown,Nav,Form,Button} from 'react-bootstrap';
+import {NavDropdown,Nav,Form } from 'react-bootstrap';
 import { NavLink, Link } from 'react-router-dom';
+import { useSearchContext } from '../context/searchContext';
+import { useEffect } from 'react';
+
 
 
 const NavBar = (props) => {
+  const { addSearch } = useSearchContext();
+  const [search,setSearch]=useState('')
   const { categories } = props;
+
+  useEffect(()=>{
+    handleSearch()
+  },[search])
+
+
+const handleSearch=()=>{
+  addSearch(search)
+}
+
   return (
     <>
       <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -15,7 +31,9 @@ const NavBar = (props) => {
           </Link>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
+              <li className="nav-item" onClick={()=>{
+                setSearch('')
+              }}>
                 <NavLink className="nav-link" aria-current="page" to="/">
                   HOME
                 </NavLink>
@@ -32,16 +50,6 @@ const NavBar = (props) => {
                   );
                 })}
               </NavDropdown>
-              <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/about">
-                  ABOUT
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/help">
-                  HELP
-                </NavLink>
-              </li>
             </ul>
             <Form className="d-flex" role="search">
               <input
@@ -49,10 +57,12 @@ const NavBar = (props) => {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                onChange={(e)=>setSearch(e.target.value)}
+                value={search}
               />
-              <Button className="btn me-4" type="submit">
+              {/* <Button className="btn me-4" type="submit" onClick={(e)=>handleSearch(e)}>
                 Search
-              </Button>
+              </Button> */}
             </Form>
             <Link to={'/cart'}>
               <CartWidget />
