@@ -15,10 +15,10 @@ const Counter = ({ stock, onAdd }) => {
   };
   
   return (
-    <div className="grid">
-      <Button onClick={handleAdd}> Sumar </Button>
-      <span style={{ minWidth: 25 }}>{contador}</span>
-      <Button onClick={handleSubstract}> Restar </Button>
+    <div className="grid" style={{display:'flex', alignItems:'center',gap:'1rem'}}>
+      <Button onClick={handleSubstract}> - </Button>
+      <span>{contador}</span>
+      <Button onClick={handleAdd}> + </Button>
       <Button
         onClick={() => {
           if (contador) onAdd(contador);

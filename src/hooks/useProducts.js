@@ -61,7 +61,7 @@ export const useProducts = (opcion = 0, parametro = 0) => {
             .catch((e) => setError(true));
         break;
     }
-  }, [parametro, search]);
+  }, [parametro, search,opcion]);
   return {
     error,
     isLoading,

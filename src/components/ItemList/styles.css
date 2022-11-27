@@ -1,3 +1,5 @@
+
+
 .cardCustom{
   background-color: #FFFFFF!important;
   width: 14rem;
@@ -21,12 +23,19 @@
 
 .cardTitle{
   font-size: 16px;
+  height: 40px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cardBody{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cardFooter{
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .stock{

@@ -1,3 +1,8 @@
+.padre{
+    min-height: 80vh;
+}
+
+
 .preview {
   display: flex;
   flex-direction: column;

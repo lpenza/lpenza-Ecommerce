@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import CartWidget from '../../components/CartWidget/CartWidget';
 import Spinner from '../../components/Spinner/Spinner';
 import './ProductDetail.css';
 import { NotFound } from '../NotFound/NotFound';
@@ -12,7 +11,7 @@ import { getProduct } from '../../api/products';
 export const ProductDetail = () => {
   const { addProduct } = useCartContext();
   const { productId } = useParams();
-  const {item,isLoading,error}=useProducts(2,productId)
+  const {item,isLoading}=useProducts(2,productId)
   const [product, setProduct] = useState({});
 
   useEffect(() => {
@@ -27,14 +26,14 @@ export const ProductDetail = () => {
   
   return (
     <>
-      {item.length===0 && error ? (
-        <NotFound />
+      {!item ? (
+        <NotFound Isproduct={true}/>
       ) : (
         <>
           {isLoading ? (
             <Spinner />
           ) : (
-            <div className="container">
+            <div className="container padre">
               <div className="card">
                 <div className="container-fliud">
                   <div className="wrapper row">
@@ -80,9 +79,6 @@ export const ProductDetail = () => {
                       </h5>
                       <div className="action add-to-cart">
                         <Counter stock={item?.stock} onAdd={handleAdd} />
-                        <button className="like btn btn-default" type="button">
-                          <CartWidget />
-                        </button>
                       </div>
                     </div>
                   </div>
