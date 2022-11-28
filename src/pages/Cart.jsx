@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useCartContext } from '../context/cartContext';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Modal } from 'react-bootstrap';
 import { addOrder } from '../api/orders';
 import { updateManyProducts } from '../api/products';
 import { EmptyCart } from '../components/EmptyCart/EmptyCart';
 import { useEffect } from 'react';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 export const Cart = () => {
   const { getTotal, cart, emptyCart } = useCartContext();
@@ -16,10 +17,8 @@ export const Cart = () => {
   const [formValid, setFormValid] = useState(false);
   const [orderId, setOrderId] = useState('');
 
-
   const today = new Date();
   const now = today.toLocaleDateString('en-US');
-
 
   const handleForm = () => {
     let valido =
@@ -42,23 +41,21 @@ export const Cart = () => {
       qty,
       precio: precio,
     }));
-   
+
     const order = {
       buyer: { name, phone, email },
       items,
       total: getTotal(),
-      date:now,
+      date: now,
     };
 
     const id = await addOrder(order);
     if (id) {
       console.log(id);
       setOrderId(id);
-      
     }
 
     await updateManyProducts(items);
-
     emptyCart();
   };
 
@@ -147,11 +144,19 @@ export const Cart = () => {
       </Button>
     </div>
   ) : orderId !== '' ? (
-    swal(
-      'Thanks for your purchase',
-      `Your order number is:${orderId}`,
-      'success'
-    )
+    <Modal show={true}>
+      <Modal.Header closeButton>
+        <Modal.Title>Thanks for your purchase</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Your order number is: {orderId}</Modal.Body>
+      <Modal.Footer>
+        <Link to="/">
+          <Button
+            variant="primary"
+          />Ok<Button/>
+        </Link>
+      </Modal.Footer>
+    </Modal>
   ) : (
     <EmptyCart />
   );

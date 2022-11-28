@@ -8,8 +8,6 @@ import {
   doc,
   //busquedas
   query,
-  limit,
-  addDoc,
   updateDoc,
   writeBatch,
   increment,

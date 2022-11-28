@@ -60,9 +60,6 @@ const handleSearch=()=>{
                 onChange={(e)=>setSearch(e.target.value)}
                 value={search}
               />
-              {/* <Button className="btn me-4" type="submit" onClick={(e)=>handleSearch(e)}>
-                Search
-              </Button> */}
             </Form>
             <Link to={'/cart'}>
               <CartWidget />
